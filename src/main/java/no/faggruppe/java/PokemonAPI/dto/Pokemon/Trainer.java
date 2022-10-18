@@ -1,4 +1,4 @@
-package no.faggruppe.java.PokemonAPI.dto;
+package no.faggruppe.java.PokemonAPI.dto.Pokemon;
 
 import lombok.Builder;
 

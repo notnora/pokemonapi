@@ -3,7 +3,8 @@ package no.faggruppe.java.PokemonAPI.consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import no.faggruppe.java.PokemonAPI.dto.PokeApiPokemonResponse;
+import no.faggruppe.java.PokemonAPI.dto.Pokemon.PokeApiPokemonResponse;
+import no.faggruppe.java.PokemonAPI.dto.Pokemon.Pokemon;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -27,5 +28,16 @@ public class PokeAPIConsumer {
         log.info("jkljkl");
         log.info("pokemons: ", pokemons);
         return pokemons;
+    }
+    public Pokemon getPokemonFromName(String name) {
+        log.info("Pokemon: {}", name);
+        val pokemon = webClient.get()
+                .uri(UriComponentsBuilder.fromHttpUrl("https://pokeapi.co/api/v2/pokemon/" + name)
+                        .build().toUri())
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToMono(Pokemon.class)
+                .block();
+        return pokemon;
     }
 }
