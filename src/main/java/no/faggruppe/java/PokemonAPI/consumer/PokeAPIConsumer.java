@@ -26,7 +26,7 @@ public class PokeAPIConsumer {
                 .bodyToMono(PokeApiPokemonResponse.class)
                 .block();
         log.info("jkljkl");
-        log.info("pokemons: ", pokemons);
+        log.info("pokemons: {}", pokemons);
         return pokemons;
     }
     public Pokemon getPokemonFromName(String name) {
