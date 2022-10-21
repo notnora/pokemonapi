@@ -5,5 +5,8 @@ import lombok.Builder;
 
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record Pokemon(String name, PokemonMove[] moves, PokemonType[] types) {
+public record Pokemon(
+        String name,
+        PokemonMove[] moves,
+        PokemonType[] types) {
 }
