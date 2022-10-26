@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class) // Burker Mockito extension med Junit
 class TrainerServiceTest {
@@ -26,7 +27,7 @@ class TrainerServiceTest {
     private TrainerRepositoryService trainerRepositoryService;
 
     @InjectMocks
-    // Mocken over skal brukes (injectes) inn i TrainerService.
+    // Mockene over skal brukes (injectes) inn i TrainerService.
     private TrainerService trainerService;
 
     @Test
@@ -34,8 +35,12 @@ class TrainerServiceTest {
     void createTrainerWithNameOneActiveOneStoragePokemonSuccessfully() {
         // Opprettelse av "test-data"
         val trainerName = "TestTrainer";
-        val pokemonBulba = Pokemon.builder().name("bulbasaur").build();
-        val pokemonSquirtle = Pokemon.builder().name("squirtle").build();
+        val pokemonBulba = Pokemon.builder()
+                .name("bulbasaur")
+                .trainerID(trainerName).build();
+        val pokemonSquirtle = Pokemon.builder()
+                .name("squirtle").
+        trainerID(trainerName).build();
         val pokemonActive = new String[]{"bulbasaur"};
         val pokemonStorage = new String[]{"squirtle"};
         val createTrainerResponse  = CreateTrainerResponse.builder()
@@ -48,15 +53,12 @@ class TrainerServiceTest {
         Om doReturn().when()
             * Må gjøres før test-kallet (trainerService.createTrainer)
             * Parameter til metoden som blir stubbet kan være 'any' eller egendefinert.
-        // Egendefinert parameter:
-        val createTrainerRequestPokeDb = CreateTrainerRequestPokeDb.builder()
-                .trainerName(trainerName)
-                .pokemonActive(new Pokemon[]{pokemonBulba})
-                .pokemonStorage(new Pokemon[]{pokemonSquirtle})
-                .build();
+        // med any parameter:
+             * doReturn(pokemonBulba).when(pokeAPIConsumer).getPokemonFromName(any(String.class));
+             * uansett hvilken streng som blir sendt inn, vil pokemonBulba bli returnert.
          */
-        // doReturn(createTrainerResponse).when(pokemonStorageRepositoryService).saveAllStoragePokemon(anyList(), any(String.class), any(boolean.class));
-
+        doReturn(pokemonBulba).when(pokeAPIConsumer).getPokemonFromName("bulbasaur");
+        doReturn(pokemonSquirtle).when(pokeAPIConsumer).getPokemonFromName("squirtle");
         val trainer = trainerService.createTrainer(trainerName, pokemonActive, pokemonStorage);
 
         /*
@@ -64,5 +66,9 @@ class TrainerServiceTest {
             * Sjekker at trainer (actual) er det samme som createTrainerResponse (expected)
         */
         assertThat(trainer.trainerName()).isEqualTo(createTrainerResponse.trainerName());
+        assertThat(trainer.partyPokemon()[0].name()).isEqualTo(pokemonBulba.name());
+        assertThat(trainer.storagePokemon()[0].name()).isEqualTo(pokemonSquirtle.name());
+        assertThat(trainer.partyPokemon()[0].trainerID()).isEqualTo(pokemonBulba.trainerID());
+        assertThat(trainer.storagePokemon()[0].trainerID()).isEqualTo(pokemonSquirtle.trainerID());
     }
 }
