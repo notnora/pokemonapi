@@ -6,7 +6,9 @@ import lombok.Builder;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record Pokemon(
+        int id,
         String name,
         PokemonMove[] moves,
-        PokemonType[] types) {
+        PokemonType[] types,
+        String trainerID) {
 }

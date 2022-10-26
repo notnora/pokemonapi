@@ -6,9 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.Pokemon;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.PokemonResult;
-import no.faggruppe.java.PokemonAPI.repository.PokemonEntity;
-import no.faggruppe.java.PokemonAPI.service.PokemonRepositoryService;
 import no.faggruppe.java.PokemonAPI.service.PokemonService;
+import no.faggruppe.java.PokemonAPI.service.PokemonStorageRepositoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PokemonController {
     private final PokemonService pokemonService;
-    private final PokemonRepositoryService pokemonRepositoryService;
+    private final PokemonStorageRepositoryService pokemonStorageRepositoryService;
 
     @GetMapping("/")
     public PokemonResult[] getAllPokemons() {
@@ -50,6 +49,6 @@ public class PokemonController {
 
     @GetMapping("/db/all")
     public List<Pokemon> getAllStoredPokemon() {
-        return pokemonRepositoryService.getAllPokemonFromDb();
+        return pokemonStorageRepositoryService.getAllPokemonFromDb();
     }
 }

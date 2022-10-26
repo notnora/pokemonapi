@@ -3,7 +3,7 @@ package no.faggruppe.java.PokemonAPI.component;
 import lombok.val;
 import no.faggruppe.java.PokemonAPI.PokemonApiApplicationTests;
 import no.faggruppe.java.PokemonAPI.controller.PokemonController;
-import no.faggruppe.java.PokemonAPI.db.PokemonTestRepository;
+import no.faggruppe.java.PokemonAPI.db.PokemonStorageTestRepository;
 import no.faggruppe.java.PokemonAPI.repository.PokemonEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +21,7 @@ public class DbComponentTest extends PokemonApiApplicationTests {
     private PokemonController pokemonController;
 
     @Autowired
-    private PokemonTestRepository pokemonTestRepository;
+    private PokemonStorageTestRepository pokemonTestRepository;
 
     @BeforeEach
     public void setUp() {
@@ -31,7 +32,8 @@ public class DbComponentTest extends PokemonApiApplicationTests {
     @DisplayName("Verifies fetching stored pokemon")
     void fetchesStoredPokemon() {
         pokemonTestRepository.save(PokemonEntity.builder()
-                .id(1L)
+                .id(UUID.randomUUID())
+                .pokedexId(1)
                 .name("Bulbasaur")
                 .type1("Grass")
                 .type2("Poison")

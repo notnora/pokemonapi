@@ -2,9 +2,7 @@ package no.faggruppe.java.PokemonAPI.service;
 
 import lombok.val;
 import no.faggruppe.java.PokemonAPI.consumer.PokeAPIConsumer;
-import no.faggruppe.java.PokemonAPI.consumer.PokeDBConsumer;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.Pokemon;
-import no.faggruppe.java.PokemonAPI.dto.Trainer.CreateTrainerRequestPokeDb;
 import no.faggruppe.java.PokemonAPI.dto.Trainer.CreateTrainerResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,8 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class) // Burker Mockito extension med Junit
 class TrainerServiceTest {
@@ -23,9 +19,11 @@ class TrainerServiceTest {
     // Mocker vekk consumeren, fordi vi vil bare teste servicen.
     // Under testen vil consumeren bare være et dummy-objekt.
     // Uten mockene, vil det komme nullpointerexception når servicen prøver å bruke den.
-    private PokeDBConsumer pokeDBConsumer;
-    @Mock
     private PokeAPIConsumer pokeAPIConsumer;
+    @Mock
+    private PokemonStorageRepositoryService pokemonStorageRepositoryService;
+    @Mock
+    private TrainerRepositoryService trainerRepositoryService;
 
     @InjectMocks
     // Mocken over skal brukes (injectes) inn i TrainerService.
@@ -42,9 +40,9 @@ class TrainerServiceTest {
         val pokemonStorage = new String[]{"squirtle"};
         val createTrainerResponse  = CreateTrainerResponse.builder()
                 .trainerName(trainerName)
-                .pokemonActive(new Pokemon[]{pokemonBulba})
-                .pokemonStorage(new Pokemon[]{pokemonSquirtle})
-                .message("Trainer created!")
+                .partyPokemon(new Pokemon[]{pokemonBulba})
+                .storagePokemon(new Pokemon[]{pokemonSquirtle})
+                .message(String.format("Created trainer '%s' successfully", trainerName))
                 .build();
         /*
         Om doReturn().when()
@@ -57,7 +55,7 @@ class TrainerServiceTest {
                 .pokemonStorage(new Pokemon[]{pokemonSquirtle})
                 .build();
          */
-        doReturn(createTrainerResponse).when(pokeDBConsumer).createTrainer(any(CreateTrainerRequestPokeDb.class));
+        // doReturn(createTrainerResponse).when(pokemonStorageRepositoryService).saveAllStoragePokemon(anyList(), any(String.class), any(boolean.class));
 
         val trainer = trainerService.createTrainer(trainerName, pokemonActive, pokemonStorage);
 
@@ -65,6 +63,6 @@ class TrainerServiceTest {
         Selve testen:
             * Sjekker at trainer (actual) er det samme som createTrainerResponse (expected)
         */
-        assertThat(trainer).isEqualTo(createTrainerResponse);
+        assertThat(trainer.trainerName()).isEqualTo(createTrainerResponse.trainerName());
     }
 }

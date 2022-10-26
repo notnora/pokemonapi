@@ -4,4 +4,4 @@ import lombok.Builder;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.Pokemon;
 
 @Builder
-public record CreateTrainerResponse (String trainerName, Pokemon[] pokemonActive, Pokemon[] pokemonStorage, String message){}
+public record CreateTrainerResponse (String trainerName, Pokemon[] partyPokemon, Pokemon[] storagePokemon, String message){}
