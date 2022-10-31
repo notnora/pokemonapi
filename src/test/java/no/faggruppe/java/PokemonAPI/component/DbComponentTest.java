@@ -31,6 +31,9 @@ public class DbComponentTest extends PokemonApiApplicationTests {
     @Test
     @DisplayName("Verifies fetching stored pokemon")
     void fetchesStoredPokemon() {
+        /**
+         * Her lager vi en PokemonEntity og stapper den inn i databasen.
+         */
         pokemonTestRepository.save(PokemonEntity.builder()
                 .id(UUID.randomUUID())
                 .pokedexId(1)
@@ -38,7 +41,9 @@ public class DbComponentTest extends PokemonApiApplicationTests {
                 .type1("Grass")
                 .type2("Poison")
                 .build());
-
+        /**
+         * Henter alle pokemonene i databasen og sjekker at de har verdiene som ble sendt inn.
+         */
         val result = pokemonController.getAllStoredPokemon();
 
         assertThat(result).hasSize(1);

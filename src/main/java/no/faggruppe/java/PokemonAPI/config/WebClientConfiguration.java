@@ -1,4 +1,4 @@
-package no.faggruppe.java.PokemonAPI.app.config;
+package no.faggruppe.java.PokemonAPI.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

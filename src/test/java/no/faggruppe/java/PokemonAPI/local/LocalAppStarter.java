@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LocalAppStarter {
     public static void main(String[] args) {
         val springApplication = new SpringApplication(LocalAppStarter.class);
-        springApplication.setAdditionalProfiles("test", "local");
+        springApplication.setAdditionalProfiles("local");
         springApplication.run(args);
     }
 }

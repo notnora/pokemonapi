@@ -1,26 +1,25 @@
 {
-  "priority": 1,
   "request": {
     "method": "GET",
-    "urlPattern": "/api/v2/pokemon/bulbasaur"
+    "urlPattern": "/api/v2/"
   },
   "response":{
     "status": 200,
     "jsonBody": {
       "abilities": [],
-      "base_experience": 1,
+      "base_experience": 0,
       "forms": [],
-      "height": 1,
+      "height": 0,
       "held_items": [],
-      "id": 1,
+      "id": 0,
       "is_default": true,
-      "order": 1,
+      "order": 0,
       "past_types": [],
       "species": {},
       "sprites": {},
       "stats": [],
       "types": [],
-      "weight": 1
+      "weight": 0
     },
     "headers": {
       "Content-Type": "application/json"
