@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "5a4d29d2-3c26-4a8a-92dd-1ce10d92f877",
+		"name": "pokeapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10235142"
+	},
+	"item": [
+		{
+			"name": "pokeapi",
+			"item": [
+				{
+					"name": "Get all Pokemon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pokeapi_url}}/pokemon",
+							"host": [
+								"{{pokeapi_url}}"
+							],
+							"path": [
+								"pokemon"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPokemonFromName",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "localhost",
+			"item": [
+				{
+					"name": "Hello, Kanto",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPOkemons",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GetPokemonByName",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTrainer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"trainerName\": \"nora90\",\n  \"pokemonActive\": [\"bulbasaur\"],\n  \"pokemonStorage\": [\"garchomp\", \"salamence\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlserver}}/api/trainer/",
+							"host": [
+								"{{baseUrlserver}}"
+							],
+							"path": [
+								"api",
+								"trainer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all pokemon in db",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get trainer",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllTrainers",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

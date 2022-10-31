@@ -1,30 +1,29 @@
 package no.faggruppe.java.PokemonAPI.component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.github.tomakehurst.wiremock.stubbing.ServeEvent;
 import lombok.val;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.Pokemon;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.PokemonMove;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.PokemonType;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 public class getPokemonComponentTest extends ComponentTestBase {
 
     @Test
+    @DisplayName("Tester henting av en pokemon med navn og response stubbet med json-fil - ok")
     void getPokemonByNameFromPokeAPIJSONStubOk() throws JsonProcessingException {
         /**
-         * bulbasaur_pokeApie_ok.json vil treffe inn er og
+         * bulbasaur_pokeApi_ok.json vil treffe inn er og
          * stubbe kallet mot pokeApiet.
          * Man kan sette priority for å bestemme hvilken stub som har prioritet
          */
         pokemonController.getPokemonByName("bulbasaur");
 
-        List<ServeEvent> allServeEvents = getAllServeEvents();
+        val allServeEvents = getAllServeEvents();
         /**
          * Vanlig assertThat vil stoppe kjøring
          * Softly lar den kjøre videre
@@ -42,6 +41,7 @@ public class getPokemonComponentTest extends ComponentTestBase {
     }
 
     @Test
+    @DisplayName("Tester henting av en pokemon med navn og response stubbet med java - ok")
     void getPokemonByNameFromPokeAPIJavaStubOk() throws JsonProcessingException {
         val squirtle = Pokemon.builder()
                 .name("squirtle")
@@ -53,6 +53,13 @@ public class getPokemonComponentTest extends ComponentTestBase {
                 .willReturn(aResponse()
                         .withBody(objectMapper.writeValueAsString(squirtle)))
         );
+        val allServeEvents = getAllServeEvents();
+
+        SoftAssertions.assertSoftly(softly -> {
+            softly.assertThat(allServeEvents.size()).isEqualTo(1);
+            softly.assertThat(allServeEvents.get(0).getRequest().getUrl()).isEqualTo("/api/v2/pokemon/squirtle");
+            // softly.assertThat(allServeEvents.get(0).getRequest().getUrl()).isEqualTo("/api/v2/pokemon/squirtle");
+        });
 
     }
 }

@@ -38,7 +38,7 @@ class TrainerServiceTest {
 
     @Test
     @DisplayName("Oppretter en trener med navn, 1 active pokemon og 1 storage pokemon - suksess")
-    void createTrainerWithNameOneActiveOneStoragePokemonSuccessfully() {
+    void createTrainerWithNameOnePartyOneStoragePokemonSuccessfully() {
         // Opprettelse av "test-data"
         val trainerName = "TestTrainer";
         val pokemonBulba = Pokemon.builder()
