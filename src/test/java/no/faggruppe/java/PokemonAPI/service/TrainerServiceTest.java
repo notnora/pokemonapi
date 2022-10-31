@@ -3,7 +3,7 @@ package no.faggruppe.java.PokemonAPI.service;
 import lombok.val;
 import no.faggruppe.java.PokemonAPI.consumer.PokeAPIConsumer;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.Pokemon;
-import no.faggruppe.java.PokemonAPI.dto.Trainer.CreateTrainerResponse;
+import no.faggruppe.java.PokemonAPI.dto.Trainer.TrainerResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,7 +43,7 @@ class TrainerServiceTest {
         trainerID(trainerName).build();
         val pokemonActive = new String[]{"bulbasaur"};
         val pokemonStorage = new String[]{"squirtle"};
-        val createTrainerResponse  = CreateTrainerResponse.builder()
+        val createTrainerResponse  = TrainerResponse.builder()
                 .trainerName(trainerName)
                 .partyPokemon(new Pokemon[]{pokemonBulba})
                 .storagePokemon(new Pokemon[]{pokemonSquirtle})

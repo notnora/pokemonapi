@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/v2/pokemon/bulbasaur"
+  },
+  "response":{
+    "status": 200,
+    "jsonBody": {
+      "abilities": [],
+      "base_experience": 1,
+      "forms": [],
+      "height": 1,
+      "held_items": [],
+      "id": 1,
+      "is_defult": true,
+      "order": 1,
+      "past_types": [],
+      "species": {},
+      "sprites": {},
+      "stats": [],
+      "types": [],
+      "weight": 1
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

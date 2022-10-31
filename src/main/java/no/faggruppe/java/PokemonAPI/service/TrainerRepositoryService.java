@@ -1,6 +1,7 @@
 package no.faggruppe.java.PokemonAPI.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import no.faggruppe.java.PokemonAPI.repository.TrainerEntity;
 import no.faggruppe.java.PokemonAPI.repository.TrainerRepository;
 import org.springframework.stereotype.Component;
@@ -14,5 +15,10 @@ public class TrainerRepositoryService {
         trainerRepository.save(TrainerEntity.builder()
                 .id(trainerName)
                 .build());
+    }
+
+    public Iterable<TrainerEntity>fetchAllTrainers () {
+        val trainerEntities = trainerRepository.findAll();
+        return trainerEntities;
     }
 }
