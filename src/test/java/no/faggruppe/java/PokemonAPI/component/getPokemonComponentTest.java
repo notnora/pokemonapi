@@ -20,7 +20,6 @@ public class getPokemonComponentTest extends ComponentTestBase {
         WireMock.resetAllRequests();
     }
 
-
     @Test
     @DisplayName("Tester henting av en pokemon med navn og response stubbet med json-fil - ok")
     void getPokemonByNameFromPokeAPIJSONStubOk() throws JsonProcessingException {

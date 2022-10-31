@@ -73,7 +73,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"trainerName\": \"nora90\",\n  \"pokemonActive\": [\"bulbasaur\"],\n  \"pokemonStorage\": [\"garchomp\", \"salamence\"]\n}",
+							"raw": "{\n  \"trainerName\": \"nora90\",\n  \"pokemonParty\": [\"bulbasaur\"],\n  \"pokemonStorage\": [\"garchomp\", \"salamence\"]\n}",
 							"options": {
 								"raw": {
 									"language": "json"

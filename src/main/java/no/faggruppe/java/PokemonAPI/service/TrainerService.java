@@ -62,17 +62,4 @@ public class TrainerService {
                 .map(trainerEntity -> fetchTrainerDetails(trainerEntity.getId()));
         return trainerDetails.toArray(TrainerResponse[]::new);
     }
- /*   public CreateTrainerResponse createTrainerAws(String trainerName, String[] activePokemonNames, String[] storagePokemonNames) {
-        val activePokemon = Stream.of(activePokemonNames)
-                .map(pokeAPIConsumer::getPokemonFromName).toArray(Pokemon[]::new);
-        val storagePokemon = Stream.of(storagePokemonNames)
-                .map(pokeAPIConsumer::getPokemonFromName).toArray(Pokemon[]::new);
-        val createTrainerRequest = CreateTrainerRequestPokeDb.builder()
-                .trainerName(trainerName)
-                .pokemonActive(activePokemon)
-                .pokemonStorage(storagePokemon).build();
-        val createdTrainer = pokeDBConsumer.createTrainer(createTrainerRequest);
-        log.info(createdTrainer.message());
-        return createdTrainer;*/
-    //}
 }

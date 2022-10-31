@@ -36,7 +36,7 @@ curl --location --request GET 'http://localhost:8080/api/trainer/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "trainerName": "nora",
-  "pokemonActive": ["bulbasaur", "ivysaur", "venusaur"],
+  "pokemonParty": ["bulbasaur", "ivysaur", "venusaur"],
   "pokemonStorage": ["squirtle", "wartortle", "blastoise"]
 }'
 ```

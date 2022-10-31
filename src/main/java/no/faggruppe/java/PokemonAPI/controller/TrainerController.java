@@ -19,7 +19,7 @@ public class TrainerController {
     private final TrainerService trainerService;
     @RequestMapping("/")
     public TrainerResponse createTrainer (@RequestBody CreateTrainerRequest body) {
-        return trainerService.createTrainer(body.trainerName(), body.pokemonActive(), body.pokemonStorage());
+        return trainerService.createTrainer(body.trainerName(), body.pokemonParty(), body.pokemonStorage());
     }
     @RequestMapping("/{trainerName}")
     public TrainerResponse fetchTrainerDetails(@PathVariable("trainerName") String trainerName) {
