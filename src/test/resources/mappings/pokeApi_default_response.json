@@ -1,5 +1,5 @@
 {
-  "priority": 1,
+  "priority": 10,
   "request": {
     "method": "GET",
     "urlPattern": "/api/v2/*"

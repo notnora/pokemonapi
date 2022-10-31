@@ -1,17 +1,25 @@
 package no.faggruppe.java.PokemonAPI.component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.tomakehurst.wiremock.client.WireMock;
 import lombok.val;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.Pokemon;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.PokemonMove;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.PokemonType;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 public class getPokemonComponentTest extends ComponentTestBase {
+
+    @BeforeEach
+    public void setUp() {
+        WireMock.resetAllRequests();
+    }
+
 
     @Test
     @DisplayName("Tester henting av en pokemon med navn og response stubbet med json-fil - ok")
@@ -51,8 +59,10 @@ public class getPokemonComponentTest extends ComponentTestBase {
                 .build();
         stubFor(get(urlMatching("/api/v2/pokemon/squirtle"))
                 .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
                         .withBody(objectMapper.writeValueAsString(squirtle)))
         );
+        pokemonController.getPokemonByName("squirtle");
         val allServeEvents = getAllServeEvents();
 
         SoftAssertions.assertSoftly(softly -> {

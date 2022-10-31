@@ -125,7 +125,7 @@ Default-sted hvor Wiremock leter etter disse filene er under `resources/mappings
 * `priority` bestemmer hvilken priority stubben har dersom det er flere som matcher. Lavt tall = høy prioritet.
 * Wiremock tillater også å stubbe responser med Java.
 * `withBody` tar bare `String` og `byte[]`, så man må gjøre om objektene sine til json-string
-
+* Resetter alle requestene før hvert kall. Hvis ikke, så har `getAllServedEvents` alle kallene fra alle testene. 
 #### Test
 `getPokemonByNameFromPokeAPIJSONStubOk`
 * Denne bruker `json`-response stuben.
