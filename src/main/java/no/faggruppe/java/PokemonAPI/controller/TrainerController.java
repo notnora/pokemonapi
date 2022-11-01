@@ -5,10 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import no.faggruppe.java.PokemonAPI.dto.Trainer.CreateTrainerRequest;
 import no.faggruppe.java.PokemonAPI.dto.Trainer.TrainerResponse;
 import no.faggruppe.java.PokemonAPI.service.TrainerService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -17,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TrainerController {
 
     private final TrainerService trainerService;
-    @RequestMapping("/")
+    @PostMapping("/")
     public TrainerResponse createTrainer (@RequestBody CreateTrainerRequest body) {
         return trainerService.createTrainer(body.trainerName(), body.pokemonParty(), body.pokemonStorage());
     }

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Locale;
+
 @Component
 @Slf4j
 @RequiredArgsConstructor
@@ -34,7 +36,7 @@ public class PokeAPIConsumer {
     public Pokemon getPokemonFromName(String name) {
         log.info("Pokemon: {}", name);
         val pokemon = webClient.get()
-                .uri(UriComponentsBuilder.fromHttpUrl(appProps.getEndpoints().getPokeApi()+"pokemon/" + name)
+                .uri(UriComponentsBuilder.fromHttpUrl(appProps.getEndpoints().getPokeApi()+"pokemon/" + name.toLowerCase())
                         .build().toUri())
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
