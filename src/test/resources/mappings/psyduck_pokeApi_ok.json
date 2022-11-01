@@ -1,0 +1,30 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "url": "/api/v2/pokemon/psyduck"
+  },
+  "response":{
+    "status": 200,
+    "jsonBody": {
+      "name": "Psyduck",
+      "abilities": [],
+      "base_experience": 1,
+      "forms": [],
+      "height": 1,
+      "held_items": [],
+      "id": 1,
+      "is_default": true,
+      "order": 1,
+      "past_types": [],
+      "species": {},
+      "sprites": {},
+      "stats": [],
+      "types": [],
+      "weight": 1
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

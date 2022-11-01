@@ -9,7 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureWireMock(port = 0)
-public class PokemonApiApplicationTests {
+public abstract class PokemonApiApplicationTests {
 	@Test
 	void contextLoads() {
 	}
