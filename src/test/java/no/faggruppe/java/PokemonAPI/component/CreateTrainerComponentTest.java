@@ -4,14 +4,11 @@ import lombok.val;
 import no.faggruppe.java.PokemonAPI.controller.TrainerController;
 import no.faggruppe.java.PokemonAPI.dto.Pokemon.Pokemon;
 import no.faggruppe.java.PokemonAPI.dto.Trainer.CreateTrainerRequest;
-import no.faggruppe.java.PokemonAPI.dto.Trainer.TrainerResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
